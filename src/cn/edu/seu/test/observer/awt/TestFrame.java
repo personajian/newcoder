@@ -1,4 +1,4 @@
-package cn.edu.seu.observer.awt;
+package cn.edu.seu.test.observer.awt;
 
 import java.awt.Button;
 import java.awt.Frame;
