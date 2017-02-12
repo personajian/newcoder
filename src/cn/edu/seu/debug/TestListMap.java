@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestDebug {
+public class TestListMap {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
