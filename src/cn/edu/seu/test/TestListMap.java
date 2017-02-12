@@ -1,4 +1,4 @@
-package cn.edu.seu.debug;
+package cn.edu.seu.test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +25,7 @@ public class TestListMap {
 	public static void getDebugMap(){
 		Map<String,Object> map= new HashMap<String,Object>();
 		map.put("姓名","小明");
-		map.put("性别","男");
+		map.put("性别","�?");
 		map.put("爱好","篮球");
 		map.put("年龄",(Integer)22);		
 		System.out.println(map);
@@ -33,7 +33,7 @@ public class TestListMap {
 	
 	public static Map getMap(Map<String, Object> map){
 		map.put("姓名","小明");
-		map.put("性别","男");
+		map.put("性别","�?");
 		map.put("爱好","篮球");
 		map.put("年龄",(Integer)22);	
 		return map;

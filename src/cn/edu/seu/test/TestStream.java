@@ -1,4 +1,4 @@
-package cn.edu.seu.debug;
+package cn.edu.seu.test;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,7 +16,7 @@ public class TestStream {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		File file=new File("a.txt");//相对路径是相对与项目的根路径(开头没有/)。
+		File file=new File("a.txt");//相对路径是相对与项目的根路径(�?头没�?/)�?
 		InputStream is = new FileInputStream(file);
 		InputStream in = TestStream.class.getResourceAsStream("/cn/edu/seu/debug/a.txt");
 		System.out.println((char)is.read());
@@ -28,7 +28,7 @@ public class TestStream {
 	}
 
 	/**
-	 * 利用简单的I/O流完成文件的拷贝
+	 * 利用�?单的I/O流完成文件的拷贝
 	 * @param source
 	 * @param distinct
 	 * @throws Exception
