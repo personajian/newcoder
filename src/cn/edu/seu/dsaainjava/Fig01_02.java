@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 public class Fig01_02
 {
     public static int f( int x )

@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 // BinarySearchTree class
 //
 // CONSTRUCTION: with no initializer

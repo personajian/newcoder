@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 import java.util.Random;
 
 // Cuckoo Hash table class

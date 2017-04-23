@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 public class Fig02_09
 {
     public static final int NOT_FOUND = -1;

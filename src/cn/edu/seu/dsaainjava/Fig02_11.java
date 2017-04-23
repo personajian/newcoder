@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 public class Fig02_11
 {
     public static boolean isEven( int n )

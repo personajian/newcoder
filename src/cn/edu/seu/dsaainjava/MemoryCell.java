@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 // MemoryCell class
 //  Object read( )         -->  Returns the stored value
 //  void write( Object x ) -->  x is stored

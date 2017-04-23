@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 // Exercise the IntCell class
 public class TestIntCell
 {

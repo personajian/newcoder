@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 // SplayTree class
 //
 // CONSTRUCTION: with no initializer

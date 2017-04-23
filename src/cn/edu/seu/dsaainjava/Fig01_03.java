@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 public class Fig01_03
 {
     public static int bad( int n )

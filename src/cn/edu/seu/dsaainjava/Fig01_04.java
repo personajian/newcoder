@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 public class Fig01_04
 {
     public static void printDigit( int n )

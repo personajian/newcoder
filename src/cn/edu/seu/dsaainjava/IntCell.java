@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 /**
  * A class for simulating an integer memory cell.
  * @author Mark A. Weiss

@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 /**
  * A class that contains several sorting routines,
  * implemented as static methods.

@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 // Treap class
 //
 // CONSTRUCTION: with no initializer

@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 // LeftistHeap class
 //
 // CONSTRUCTION: with a negative infinity sentinel

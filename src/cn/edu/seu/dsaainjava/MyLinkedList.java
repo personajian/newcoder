@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 /**
  * LinkedList class implements a doubly-linked list.
  */

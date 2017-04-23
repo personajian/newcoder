@@ -1,5 +1,4 @@
 package cn.edu.seu.dsaainjava;
-
 // AvlTree class
 //
 // CONSTRUCTION: with no initializer

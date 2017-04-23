@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 public class TestMemoryCell
 {
     public static void main( String [ ] args )

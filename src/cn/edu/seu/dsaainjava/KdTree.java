@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 /**
  * Quick illustration of a two-dimensional tree.
  */

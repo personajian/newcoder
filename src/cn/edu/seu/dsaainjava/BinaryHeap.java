@@ -1,5 +1,4 @@
 package cn.edu.seu.dsaainjava;
-
 // BinaryHeap class
 //
 // CONSTRUCTION: with optional capacity (that defaults to 100)

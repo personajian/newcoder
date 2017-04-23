@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 
 class Fig02_12
 {

@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 public class Fig02_10
 {
     public static long gcd( long m, long n )

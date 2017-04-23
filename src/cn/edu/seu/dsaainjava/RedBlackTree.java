@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 // RedBlackTree class
 //
 // CONSTRUCTION: with no parameters

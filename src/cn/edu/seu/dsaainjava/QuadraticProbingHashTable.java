@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 
 // QuadraticProbing Hash table class
 //

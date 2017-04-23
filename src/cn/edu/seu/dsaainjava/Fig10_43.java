@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 public class Fig10_43
 {
     public static double eval( int n )

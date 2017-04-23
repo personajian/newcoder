@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 // DisjSets class
 //
 // CONSTRUCTION: with int representing initial number of sets

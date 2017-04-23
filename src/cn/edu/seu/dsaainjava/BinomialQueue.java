@@ -1,3 +1,4 @@
+package cn.edu.seu.dsaainjava;
 // BinomialQueue class
 //
 // CONSTRUCTION: with no parameters or a single item
