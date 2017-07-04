@@ -15,7 +15,9 @@ public class RadixSort
     {
         final int BUCKETS = 256;
         
-        ArrayList<String> [ ] buckets = new ArrayList<>[ BUCKETS ];
+        //因为Java不允许泛型数据，与共变数组（covariant）和类型擦除（type erasure）
+        //ArrayList<String> [ ] buckets = new ArrayList<>[ BUCKETS ];
+        ArrayList<String> [ ] buckets = (ArrayList<String>[]) new ArrayList[ BUCKETS ];
         
         for( int i = 0; i < BUCKETS; i++ )
             buckets[ i ] = new ArrayList<>( );
@@ -85,8 +87,10 @@ public class RadixSort
     {
         final int BUCKETS = 256;
         
-        ArrayList<String> [ ] wordsByLength = new ArrayList<>[ maxLen + 1 ];
-        ArrayList<String> [ ] buckets = new ArrayList<>[ BUCKETS ];
+        //ArrayList<String> [ ] wordsByLength = new ArrayList<>[ maxLen + 1 ];
+        //ArrayList<String> [ ] buckets = new ArrayList<>[ BUCKETS ];        
+        ArrayList<String> [ ] wordsByLength =(ArrayList<String>[]) new ArrayList[ maxLen + 1 ];
+        ArrayList<String> [ ] buckets = (ArrayList<String> [])new ArrayList[ BUCKETS ];
         
         for( int i = 0; i < wordsByLength.length; i++ )
             wordsByLength[ i ] = new ArrayList<>( );
