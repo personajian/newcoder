@@ -30,6 +30,7 @@ public class Questionnaire {
 				}
 			}
 		}
+		in.close();
 	}
 
 }

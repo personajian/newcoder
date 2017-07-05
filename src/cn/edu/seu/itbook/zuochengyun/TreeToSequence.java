@@ -7,33 +7,33 @@ import java.util.*;
  * 二叉树先、中、后序遍历的递归实现
  */
 public class TreeToSequence {
-    private static void firstRoot(List<Integer> list, TreeNode root) {
+    private static void preOrder(List<Integer> list, TreeNode root) {
         // 先序遍历
         if (root == null) {
             return;
         }
         list.add(root.val);
-        firstRoot(list, root.left);
-        firstRoot(list, root.right);
+        preOrder(list, root.left);
+        preOrder(list, root.right);
     }
  
-    private static void middleRoot(List<Integer> list, TreeNode root) {
+    private static void inOrder(List<Integer> list, TreeNode root) {
         // 中序遍历
         if (root == null) {
             return;
         }
-        middleRoot(list, root.left);
+        inOrder(list, root.left);
         list.add(root.val);
-        middleRoot(list, root.right);
+        inOrder(list, root.right);
     }
  
-    private static void lastRoot(List<Integer> list, TreeNode root) {
+    private static void postOrder(List<Integer> list, TreeNode root) {
         // 后序遍历
         if (root == null) {
             return;
         }
-        lastRoot(list, root.left);
-        lastRoot(list, root.right);
+        postOrder(list, root.left);
+        postOrder(list, root.right);
         list.add(root.val);
     }
     
@@ -42,9 +42,9 @@ public class TreeToSequence {
         List<Integer> listFirst = new LinkedList<Integer>();
         List<Integer> listSecond = new LinkedList<Integer>();
         List<Integer> listEnd = new LinkedList<Integer>();
-        firstRoot(listFirst, root);
-        middleRoot(listSecond, root);
-        lastRoot(listEnd, root);
+        preOrder(listFirst, root);
+        inOrder(listSecond, root);
+        postOrder(listEnd, root);
         int[][] result = new int[3][listFirst.size()];
         for (int j = 0;j < listFirst.size();j++) {
             result[0][j] = listFirst.get(j);

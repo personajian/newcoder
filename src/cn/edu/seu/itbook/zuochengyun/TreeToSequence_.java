@@ -10,10 +10,31 @@ import org.junit.runner.Result;
  */
 
 public class TreeToSequence_ {
+	
+    /**
+     * 层次遍历：使用队列
+     */
+    private static void levelOrder(List<Integer> list, TreeNode root) {
+        //Stack<TreeNode> stack = new Stack<TreeNode>();
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.offer(root);//根节点入队
+        while (!queue.isEmpty()) {
+            root = queue.remove();//1.队头移出元素
+            list.add(root.val);//2.访问（打印）节点
+            if (root.right != null) {//3.左节点入队
+                queue.offer(root.left);
+            }
+            if (root.left != null){
+                queue.offer(root.right);//4.右节点入队
+            }
+
+        }
+    }
+    
     /**
      * 先序遍历：根左右
      */
-    private static void firstRoot(List<Integer> list, TreeNode root) {
+    private static void preOrder(List<Integer> list, TreeNode root) {
         Stack<TreeNode> stack = new Stack<TreeNode>();
         stack.add(root);//根节点入栈
         while (!stack.isEmpty()) {
@@ -32,7 +53,7 @@ public class TreeToSequence_ {
     /**
      * 中序遍历：左根右
      */
-    private static void middleRoot(List<Integer> list, TreeNode root) {
+    private static void inOrder(List<Integer> list, TreeNode root) {
         Stack<TreeNode> stack = new Stack<TreeNode>();
         while (!stack.isEmpty() || root!=null) {
             if (root != null) {
@@ -49,7 +70,7 @@ public class TreeToSequence_ {
     /**
      * 后序遍历（两个栈实现）
      */
-    private static void lastRoot(List<Integer> list, TreeNode root) {
+    private static void postOrder(List<Integer> list, TreeNode root) {
         Stack<TreeNode> stack1 = new Stack<TreeNode>();
         Stack<TreeNode> stack2 = new Stack<TreeNode>();
         stack1.add(root);
@@ -70,18 +91,24 @@ public class TreeToSequence_ {
     
     public static int[][] convert(TreeNode root) {
         // write code here
+        /*List<Integer> listLevel = new LinkedList<Integer>();
         List<Integer> listFirst = new LinkedList<Integer>();
         List<Integer> listSecond = new LinkedList<Integer>();
-        List<Integer> listEnd = new LinkedList<Integer>();
-        firstRoot(listFirst, root);
-        middleRoot(listSecond, root);
-        lastRoot(listEnd, root);
-        int[][] result = new int[3][listFirst.size()];
-        for (int j = 0;j < listFirst.size();j++) {
-            result[0][j] = listFirst.get(j);
-            result[1][j] = listSecond.get(j);
-            result[2][j] = listEnd.get(j);
-        }
+        List<Integer> listEnd = new LinkedList<Integer>();*/
+    	List<LinkedList<Integer>> lists=new LinkedList<LinkedList<Integer>>();
+    	for(int i=0;i<4;i++) {
+    		lists.add(new LinkedList<>());
+    	}
+        levelOrder(lists.get(0), root);
+        preOrder(lists.get(1), root);
+        inOrder(lists.get(2), root);
+        postOrder(lists.get(3), root);
+        int[][] result = new int[4][lists.get(0).size()];
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0;j < lists.get(0).size();j++) {
+                result[i][j] = lists.get(i).get(j);
+            }
+		}
         return result;
     }
 
@@ -96,7 +123,7 @@ public class TreeToSequence_ {
 		
 		int[][] result=convert(root);
 		
-		for(int i=0;i<3;i++) {
+		for(int i=0;i<4;i++) {
 			for(int j=0;j<result[i].length;j++) {
 				System.out.print(result[i][j]);
 			}
