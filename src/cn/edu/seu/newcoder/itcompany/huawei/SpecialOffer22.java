@@ -2,7 +2,7 @@ package cn.edu.seu.newcoder.itcompany.huawei;
 
 import java.util.Scanner;
 
-public class A22 {
+public class SpecialOffer22 {
 	
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
