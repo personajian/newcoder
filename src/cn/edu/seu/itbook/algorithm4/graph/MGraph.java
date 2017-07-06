@@ -1,8 +1,8 @@
-package cn.edu.seu.itbook.mydatastruct;
+package cn.edu.seu.itbook.algorithm4.graph;
 
 /**
  * @author personajian
- * 邻接矩阵
+ * 图的邻接矩阵。
  */
 public class MGraph{
 	int VERTEXNUM;

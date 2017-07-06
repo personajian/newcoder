@@ -1,4 +1,4 @@
-package cn.edu.seu.itbook.zuochengyun;
+package cn.edu.seu.itbook.algorithm4.tree;
 
 public class TreeNode {
 	int val = 0;
