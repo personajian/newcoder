@@ -3,6 +3,7 @@ package cn.edu.seu.itbook.algorithm4.graph;
 /**
  * @author personajian
  * Floyd算法所有顶点之间的最短路径。
+ * 基于动态规划的思想：从i号顶点到j号顶点只经过前k号顶点的最短路径。
  */
 public class Floyd {
 	
@@ -22,7 +23,7 @@ public class Floyd {
 				P[v][w]=w;//路径数组，存储顶点
 			}
 		}
-		
+		//Floyd核心代码五行
 		for(k=0;k<G.VERTEXNUM;k++) {
 			for(v=0;v<G.VERTEXNUM;v++) {
 				for(w=0;w<G.VERTEXNUM;w++) {
