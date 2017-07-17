@@ -1,3 +1,11 @@
+[TOC]
+
+## 参考文章：
+
+- [Java反射机制应用实践](https://www.ziwenxie.site/2017/03/22/java-reflection/)
+- [谈谈Java反射机制](http://www.jianshu.com/p/6277c1f9f48d)
+
+
 # 反射机制：
 
 - 指可以在**运行时**加载、探知、使用编译期间完全未知的类。
@@ -66,3 +74,5 @@ java.lang.Class类十分特殊，用来表示**java中类型（class/interface/e
 **构造函数是java.lang.reflect.Constructor类的对象**。
 >`java.lang.Class#getConstructor()`:获取所有的public的构造函数；
 >`java.lang.Class#getDeclaredConstructor()`:获取所有的自己声明的构造函数；
+
+![Java反射机制思维导图](https://github.com/personajian/newcoder/raw/master/resources/picture/Image-java-reflect.png)
