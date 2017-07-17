@@ -17,7 +17,6 @@
 - [深入浅出java CyclicBarrier](http://www.jianshu.com/p/424374d71b67?utm_campaign=maleskine&utm_content=note&utm_medium=pc_all_hots&utm_source=recommendation)
 - [如何使用 volatile, synchronized, final 进行线程间通信](https://segmentfault.com/a/1190000004487149)
 - [Java多线程和内存可见性](https://segmentfault.com/a/1190000009828216)
-- [](http://www.cnblogs.com/ityouknow/p/5610232.html)
 - [深入理解Java内存模型（一）——基础](https://segmentfault.com/a/1190000000435392)
 - [深入理解Java内存模型（二）——重排序](https://segmentfault.com/a/1190000000448896)
 - [深入理解Java内存模型（三）——顺序一致性](https://segmentfault.com/a/1190000000451173)
