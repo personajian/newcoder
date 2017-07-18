@@ -1,0 +1,20 @@
+#### 设计模式
+
+- 《设计模式——可复用面向对象软件的基础》
+- [JDK里的设计模式](http://coolshell.cn/articles/3320.html)
+- [Java之旅--设计模式](https://www.kancloud.cn/digest/java-travel/159436)
+- [Java之美[从菜鸟到高手演变]之设计模式](http://blog.csdn.net/zhangerqing/article/details/8194653http://blog.csdn.net/zhangerqing/article/details/8194653)
+- [Java之美[从菜鸟到高手演变]之设计模式二](http://blog.csdn.net/zhangerqing/article/details/8239539)
+- [Java之美[从菜鸟到高手演变]之设计模式三](http://blog.csdn.net/zhangerqing/article/details/8243942)
+- [Java之美[从菜鸟到高手演变]之设计模式四](http://blog.csdn.net/zhangerqing/article/details/8245537)
+- [《Head first设计模式》学习笔记 - 迭代器模式](http://cashow.github.io/head-first-design-patterns-notes-iterator-pattern.html)
+- [《Head first设计模式》学习笔记 - 模板方法模式](http://cashow.github.io/head-first-design-patterns-notes-template-method-pattern.html)
+- [《Head first设计模式》学习笔记 - 外观模式](http://cashow.github.io/head-first-design-patterns-notes-facade-pattern.html)
+- [《Head first设计模式》学习笔记 - 适配器模式](http://cashow.github.io/head-first-design-patterns-notes-adapter-pattern.html)
+- [《Head first设计模式》学习笔记 - 命令模式](http://cashow.github.io/head-first-design-patterns-notes-command-pattern.html)
+- [《Head first设计模式》学习笔记 - 单件模式](http://cashow.github.io/head-first-design-patterns-notes-singleton-pattern.html)
+- [《Head first设计模式》学习笔记 - 抽象工厂模式](http://cashow.github.io/head-first-design-patterns-notes-abstract-factory-pattern.html)
+- [《Head first设计模式》学习笔记 - 工厂方法模式](http://cashow.github.io/head-first-design-patterns-notes-factory-method-pattern.html)
+- [《Head first设计模式》学习笔记 - 装饰者模式](http://cashow.github.io/head-first-design-patterns-notes-decorator-pattern.html)
+- [《Head first设计模式》学习笔记 - 观察者模式](http://cashow.github.io/head-first-design-patterns-notes-observer-pattern.html)
+- [《Head first设计模式》学习笔记 - 策略模式](http://cashow.github.io/head-first-design-patterns-notes-strategy-pattern.html)
