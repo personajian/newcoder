@@ -6,13 +6,7 @@
 - [为什么要抛出异常？](https://www.zhihu.com/question/26158399)
 - [Java常见异常及解释](http://www.importnew.com/16725.html)
 - [深入理解java异常处理机制](http://blog.csdn.net/hguisu/article/details/6155636)
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
+
 
 ## 异常-马士兵
 
