@@ -1,15 +1,8 @@
----
-title: Socket->Servlet->JSP->MVC
-tags: []
-notebook: C01-Java Web
----
-[TOC]
-
 ### 1.Socket编程：
 
 是最底层的java的http通信，能获取到网站的信息。实现网络爬虫的基础。
 
-```
+```java
 package itat.zttc.http;
 
 import java.io.BufferedReader;
@@ -245,11 +238,15 @@ public class CharEncodingFilter implements Filter {
 
 所以试图采用一个BaseSerlvet来实现灵活的可控制多个servlet。   
 1. 在BaseServlet中编写业务逻辑需要的调用的方法； 
-<en-media hash="8db01cff2fba74f7aae4d84ca97aed9a" style="height: auto;" type="image/png"/>      
+
+![Image-javaee-servlet-baseservlet.png](https://github.com/personajian/newcoder/raw/master/resources/picture/Image-javaee-servlet-baseservlet-forward.png)
+   
 2. 继承BaseServlet的Servlet通过反射机制（反射调用相应的方法），来调用业务所需的方法。  
 3. 于是继承了BaseServelt的UserServlet，不要添加doGet/doPost，只需要专著于自己的所需要调用的方法。  
 4. 但是有个遗憾,服务器端跳转都需要在业务方法内写上：request.getRequestDispatcher("/WEB-INF/user/register.jsp").forward(request,response);  
-<en-media hash="43fb9abb529305107fc6c0c919c38af3" style="height: auto;" type="image/png"/>
+
+![Image-javaee-servlet-baseservlet-forward.png](https://github.com/personajian/newcoder/raw/master/resources/picture/Image-javaee-servlet-baseservlet-forward.png)
+
 客户端跳转也一样  
 5. 所以在BaseSerlvet对跳转的url再进行封装。 
 <en-media hash="3aff54701f19ca514696ad0094341549" type="image/png"/>      
