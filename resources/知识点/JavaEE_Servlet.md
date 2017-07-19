@@ -1,9 +1,56 @@
+[TOC]
+
 #### 参考文章
 
 1. [Servlet总结](http://www.iteye.com/topic/766418)
 2. 马士兵Servlet
 
-### 马士兵Servlet
+### 一、HTTP基础
+
+#### 1.1 HTTP请求：
+
+1. 一个请求行：请求方式（GET,POST...），请求内容（-.html），请求协议
+2. 若干请求头：
+	- Accept: 用于告诉服务器，客户机支持的数据类型
+	- Accept-Charset:用于告诉服务器，客户机采用的编码
+	- Accept-Encoding:用于告诉服务器，客户机支持的数据压缩格式
+	- Accept-Language:客户机的语言环境
+	- Host:用于告诉服务器，想访问的主机名
+	- If-Modified-Since:用于告诉服务器，资源的缓存时间
+	- Referer:用于告诉服务器，它从哪个资源来访问服务器的（防盗链）
+	- User-Agent:客户机的软件环境
+	- Cookie：用于给服务器带数据
+	- Connection:close/Keep-Alive
+	- Date:
+	- Range：指示服务器只传输一部分web资源，实现断点下载
+3. 实体内容：
+
+#### HTTP响应：
+
+1. 一个状态行：
+	- HTTP版本号 状态码 原因描述<CRLF> HTTP/1.1 200 OK 用于描述服务器对请求的处理结果
+	- 1xx消息 2xx成功 3xx重定向 4xx客户端错误 5xx服务器错误
+2. 若干响应头：服务器的基本信息以及数据的描述，可以通过客户机如何处理回送的数据（打开、下载）
+	- Location：这个头配合302状态码使用，用于告诉客户机找谁去
+	- Server：服务器通过这个头告诉客户机，服务器的类型
+	- Content-Encoding：gzip 服务器通过这个头，告诉浏览器数据采用的压缩格式
+	- Content-Lenght：服务器通过这个头，告诉浏览器回送数据的长度
+	- Content-Type：服务器通过这个头，告诉浏览器回送数据的类型（01010--浏览器解析->文字，图片...）
+	- Last-Modified：服务器通过这个头，告诉浏览器当前资源缓存时间
+	- Refresh：服务器通过这个头，告诉浏览器隔多长时间刷新一次（聊天室、5秒后跳转）
+	- Content-Dispoisiton：服务器通过这个头，告诉浏览器以下载港式打开数据
+	- Transfer-Encoding：服务器通过这个头，告诉浏览器数据的传送格式（块传送）
+	- ETag：缓存相头的头（表示客户机、服务器资源修改了没有，缓存用到的，做到事实更行。）
+	- Expires：服务器通过这个头，告诉浏览器把回送数据缓存多长时间，-1或0，则是不缓存
+	- Cache-Control：no-cache
+	- Pragma：no-cache 服务器通过以上两个头，也是控制浏览器不要缓存数据
+	- Connection:close/Keep-Alive
+	- Date:
+	- Accept-Range：说明服务器是否支持Range（断点下载）
+	- Content-Range：指定了返回的web资源的字节范围
+3. 实体内容
+
+### 二、马士兵Servlet
 
 #### Web服务器：
 
@@ -42,7 +89,8 @@
 	- web.xml:定义所有Web应用的配置
 	- tomcat-users.xml:定义了tomcat用户的信息
 
-### Servlet总结
+
+### 四、Servlet总结
 
 1. 什么是Servlet
 2. Servlet有什么作用
