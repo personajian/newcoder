@@ -1,8 +1,6 @@
 package cn.edu.seu.swordoffer;
 
-import org.hamcrest.core.Is;
-
-/**
+/**平衡二叉树
  * @Author personajian
  * @Date 2017/7/25 13:42
  */

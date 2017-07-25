@@ -2,6 +2,10 @@ package cn.edu.seu.swordoffer;
 
 import java.util.Stack;
 
+/**用两个栈实现队列
+ * @Author personajian
+ * @Date 2017/7/25 22:56
+ */
 public class T7_StackToQueue {
     Stack<Integer> stack1 = new Stack<Integer>();
     Stack<Integer> stack2 = new Stack<Integer>();

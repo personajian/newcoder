@@ -2,12 +2,12 @@ package cn.edu.seu.swordoffer;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-
+/**从尾到头打印链表
+ * @Author personajian
+ * @Date 2017/7/25 22:58
+ */
 public class T5_PrintListReserve {
 
-	/**从尾到头打印链表：采用辅助栈
-	 * @param head
-	 */
 	public void PrintListReserveIteratively(ListNode head) {
 		LinkedList<ListNode> stack=new LinkedList<>();
 		

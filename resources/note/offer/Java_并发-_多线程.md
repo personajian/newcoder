@@ -8,74 +8,62 @@
 5. 《深入理解Java虚拟机》
 6. 《实战Java高并发程序设计》
 
-## 一、[Java多线程抢占](https://blog.dreamtobe.cn/2015/03/25/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8A%A2%E5%8D%A0/)
 
-### 前言 机制种类
+### 线程生命周期
 
-- 抢占机制
+```java
+public enum State{
+    NEW,
+    RUNNABLE,
+    BLOCKED,
+    WAITING,
+    TIMED_WAITING,
+    TERMINATED;
+}
+```
 
-对于CPU而言多个线程处于就绪线程队列，但是只有一个线程在运行状态。
+```java
+/*Thread的方法*/
+Thread#start();//启动
+Thread#run();//运行
+Thread#stop();//终止
+Thread#interrupt();//中断：希望退出
+Thread#suspend();
+Thread#resume();
+Thread#join();//等待线程结束：无限等待，一直阻塞当前线程，直到目标线程执行完毕；本质是让调用wait()在当前线程对象实例上。
+Thread#yield();//谦让
+Thread#sleep();//不会释放任何资源
 
-为Java多线程机制。
+/*Object的方法，是获得目标对象的监视器，用于多线程协作。*/
+Object#wait();//释放目标对象的锁
+Object#notify();//唤醒一个等待目标对象锁的线程
+Object#notifyAll();//唤醒所有等待目标对象锁的线程
+```
 
+方法|方法来源|作用范围|效果|
+---|---|---|---
+interrupt|Thread|wait/sleep/join|
+sleep|Thread||睡眠，不释放锁
+join|Thread||等待join所在线程
+yield|Thread||停止当前线程。将CPU转移给其他线程
+suspend|Thread||挂起，可能导致死锁，弃用
+resume|Thread||
+wait|Object|在synchronized块下调用|释放目标对象的锁，进入等待池
+notify|Object||唤醒一个等待目标对象锁的线程
+notifyAll|Object||唤醒所有等待目标对象锁的线程
+
+### [Java多线程抢占](https://blog.dreamtobe.cn/2015/03/25/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8A%A2%E5%8D%A0/)
+
+#### 机制种类
+
+- 抢占机制：对于CPU而言多个线程处于就绪线程队列，但是只有一个线程在运行状态。——Java多线程机制。
 - 分时机制
 
-顾名思义。
+### [Java Synchronised机制](https://blog.dreamtobe.cn/2015/11/13/java_synchronized/)
 
-多线程抢占中很多机制是与synchronized机制息息相关的。关于Java Synchronised机制可以参看这篇文章: http://blog.dreamtobe.cn/2015/11/13/java_synchronized/
+#### I. 锁的原末
 
-#### I. interrupt
-
-- 方法来源: Thread
-- 作用范围: wait/sleep/join
-- 作用效果: 立即抛出InterruptedException
-
-#### II. wait
-
-基本原理是: 通过调整Mark Word中的标志位来释放对象的所有权，休眠当前线程并且进入等待池来实现。
-
-- 方法来源: Object
-- 使用前提: 由于其实现原理，因此必须在synchronized块下调用。
-- 作用效果: 释放锁（暂时将锁借给别的线程用），并进入等待池。
-
-恢复:
-![线程恢复](https://blog.dreamtobe.cn/img/javathread-1.png)
-
-促发恢复: 1. 调用notify；2. wait(millisecond) 给定时间；3. 通过interrupt打断等待状态，并抛出InterruptedException。
-
-恢复状态: 进入锁池。
-
-真正恢复: 从锁池中重新竞争对象锁，获得锁后回到中断现场(从wait后继续执行代码)。
-
-#### III. sleep
-
-- 方法来源: Thread
-- 方法特点: 不释放锁。
-- 促发恢复: 1. sleep(millisecond)给定时间；2. 通过interrupt打断睡眠状态，并抛出InterruptedException。
-
-#### IV. join
-
-- 方法来源: Thread
-- 作用效果: 调用线程停下来等待join方法所在线程。
-- 促发恢复: join方法所在线程结束（run()方法结束）
-
-#### V. yield
-
-- 方法来源: Thread
-- 作用效果: 停止当前线程，让同等优先级线程运行, 如果没有同等优先级的线程，yield将不会起作用。
-
-#### VI. suspend
-
-可能导致死锁，因此弃用
-
-Android 中抢占机制需要注意的地方
-需要注意的是: Android中如果某进程中只有某线程且被长期阻塞在等待池，并且进程所在组件优先级较低，可能会被系统回收。此时更应该考虑使用AlarmManager，它持有一个CPU唤醒锁，并且即便是组件或进程已经被回收也会被重新唤起，是不存在这个问题的。(因此如果要做轮询、Socket心跳之类的，推荐使用AlarmManager，这样才能保证时间间隔的稳定、可靠)。
-
-## 二、[Java Synchronised机制](https://blog.dreamtobe.cn/2015/11/13/java_synchronized/)
-
-### I. 锁的原末
-
-### 矛盾1:重量级锁造成线程阻塞->引入轻量级锁（例如自旋锁）来避免。
+>矛盾1:重量级锁造成线程阻塞->引入轻量级锁（例如自旋锁）来避免。
 
 A: 重量级锁中的阻塞(挂起线程/恢复线程): 需要转入内核态中完成，有很大的性能影响。
 
@@ -83,7 +71,7 @@ B: 锁大多数情况都是在很短的时间执行完成。
 
 解决方案: 引入轻量锁(通过自旋来完成锁竞争)。
 
-### 矛盾2:自旋锁占用CPU时间->默认自旋次数为10，或者失败后升级为重量级锁。
+>矛盾2:自旋锁占用CPU时间->默认自旋次数为10，或者失败后升级为重量级锁。
 
 A: 轻量级锁中的自旋: 占用CPU时间，增加CPU的消耗(因此在多核处理器上优势更明显)。
 
@@ -91,7 +79,7 @@ B: 如果某锁始终是被长期占用，导致自旋如果没有把握好，�
 
 解决方案: JDK5中引入默认自旋次数为10(用户可以通过-XX:PreBlockSpin进行修改)， JDK6中更是引入了自适应自旋（简单来说如果自旋成功概率高，就会允许等待更长的时间（如100次自旋），如果失败率很高，那很有可能就不做自旋，直接升级为重量级锁，实际场景中，HotSpot认为最佳时间应该是一个线程上下文切换的时间，而是否自旋以及自旋次数更是与对CPUs的负载、CPUs是否处于节电模式等息息相关的)。
 
-### 矛盾3:锁通过CAS对mark word修改多余->引入偏向锁，对比mw，取得锁就不用CAS。
+>矛盾3:锁通过CAS对mark word修改多余->引入偏向锁，对比mw，取得锁就不用CAS。
 
 A: 无论是轻量级锁还是重量级锁: 在进入与退出时都要通过CAS修改对象头中的Mark Word来进行加锁与释放锁。
 
@@ -99,7 +87,7 @@ B: 在一些情况下总是同一线程多次获得锁，此时第二次再重�
 
 解决方案: JDK6引入偏向锁(首次需要通过CAS修改对象头中的Mark Word，之后该线程再进入只需要比较对象头中的Mark Word的Thread ID是否与当前的一致，如果一致说明已经取得锁，就不用再CAS了)。
 
-### 矛盾4:多线程多为锁，偏向锁用的少->可以禁用偏向锁。
+>矛盾4:多线程多为锁，偏向锁用的少->可以禁用偏向锁。
 
 A: 项目中代码块中可能绝大情况下都是多线程访问。
 
@@ -107,7 +95,7 @@ B: 每次都是先偏向锁然后过渡到轻量锁，而偏向锁能用到的�
 
 解决方案: 可以使用-XX:-UseBiasedLocking=false禁用偏向锁。
 
-### 矛盾5:大量加锁中可以无效->通过JIT来进行锁消除。
+>矛盾5:大量加锁中可以无效->通过JIT来进行锁消除。
 
 A: 代码中JDK原生或其他的工具方法中带有大量的加锁。
 
@@ -115,7 +103,7 @@ B: 实际过程中，很有可能很多加锁是无效的(如局部变量作为�
 
 解决方法: 引入锁削除(虚拟机即时编译器(JIT)运行时，依据逃逸分析的数据检测到不可能存在竞争的锁，就自动将该锁消除)。
 
-### 矛盾6:锁粒度太小，频繁加锁解锁->引入锁膨胀。
+>矛盾6:锁粒度太小，频繁加锁解锁->引入锁膨胀。
 
 A: 为了让锁颗粒度更小，或者原生方法中带有锁，很有可能在一个频繁执行(如循环)中对同一对象加锁。
 
@@ -123,18 +111,18 @@ B: 由于在频繁的执行中，反复的加锁和解锁，这种频繁的锁�
 
 解决方法: 引入锁膨胀(会自动将锁的范围拓展到操作序列(如循环)外, 可以理解为将一些反复的锁合为一个锁放在它们外部)。
 
-### II. synchronised基本原理
+#### synchronised基本原理
 
 >参考《深入理解Java虚拟机》P391。
 
-JVM会为每个对象分配一个monitor，而同时只能有一个线程可以获得该对象monitor的所有权。在线程进入时通过monitorenter尝试取得对象monitor所有权，退出时通过monitorexit释放对象monitor所有权。
+JVM会为每个对象分配一个monitor（监视器），而同时只能有一个线程可以获得该对象monitor的所有权。在线程进入时通过monitorenter尝试取得对象monitor所有权，退出时通过monitorexit释放对象monitor所有权。
 
 monitorenter与monitorexit在编译后对称插入代码。
 
 monitorenter: 被插入到同步代码块之前。
 monitorexit: 被插到同步代码块之后或异常处。
 
-#### 1. 锁相关数据存在哪里?
+>锁相关数据存在哪里?
 
 对象头。
 
@@ -150,18 +138,15 @@ monitorexit: 被插到同步代码块之后或异常处。
 
 而对象的锁，一般只和Mark Word有关。
 
-#### 2. 各个锁的关系以及升级情况?
+>各个锁的关系以及升级情况?
 
 锁升级是单向的: 无锁 -> 偏向锁 -> 轻量级锁 -> 重量级锁
 
-![锁升级](https://blog.dreamtobe.cn/img/java_synchronized.png)
-
-
-### III. 多线程下数据同步
+### 多线程下数据同步
 
 这类锁/关键字主要是为了维护数据在高并发情况下的一致性/稳定性。
 
-#### 1. 数据库中的锁
+#### 数据库中的锁
 
 - 共享锁(Share Lock)
 
@@ -177,7 +162,9 @@ monitorexit: 被插到同步代码块之后或异常处。
 
 同能只能有一个线程可以获得某个数据的排他锁。在线程获取排他锁后，该线程可对数据读写，但是其他线程不能对该数据添加任何锁。
 
-#### 2. volatile
+#### JVM的轻量级volatile
+
+>volatile：保证可见性，不保证原子性。
 
 如果一个共享变量被声明成volatile，java线程内存模型将会确保所有线程看到这个变量的值是一致的。
 
@@ -185,48 +172,14 @@ monitorexit: 被插到同步代码块之后或异常处。
 可能带来的性能消耗: 写操作实时写回内存，锁总线/锁内存。
 优势: 一些场景上相比synchronized，执行成本更低(不会引起线程上下文切换以及调度)，使用更方便。
 
-## 三、《深入理解Java虚拟机》高效并发
+## 线程理论
 
-#### JMM
+### JMM原理
 
 1. 原子性：操作的原子性，long、double类型的非原子协定；
 2. 可见性：CPU，Cache，存器，主存；缓存优化，硬件优化，编译器优化
 3. 有序性：指令重排只保证串行语义一直，但不保证多线程语义一致性
 4. Happen-Before规则：不能指令重排的！
-
-#### 线程声明周期
-
-```java
-public enum State{
-    NEW,
-    RUNNABLE,
-    BLOCKED,
-    WAITING,
-    TIMED_WAITING,
-    TERMINATED;
-}
-```
-
-```java
-/*Thread的方法*/
-Thread#start();
-Thread#run();
-Thread#stop();//终止
-Thread#interrupt();//中断：希望退出
-Thread#suspend();
-Thread#resume();
-Thread#join();//等待线程结束：无限等待，一直阻塞当前线程，直到目标线程执行完毕；本质是让调用wait()在当前线程对象实例上。
-Thread#yield();//谦让
-Thread#sleep();//不会释放任何资源
-/*Object的方法，是获得目标对象的监视器，用于多线程协作。*/
-Object#wait();//释放目标对象的锁
-Object#notify();
-Object#notifyAll();
-```
-
-volatile：保证可见性，不保证原子性。
-
-JDK并发包：
 
 ### 1. 线程引入的开销
 
@@ -291,11 +244,11 @@ JDK并发包：
 
 - ThreadLocal：空间换时间，弱引用，立即回收
 
-### 7. 有锁（悲观锁）
+## 有锁（悲观锁）
 
-#### 7.1 同步控制：（锁+对象）
+### 同步控制：（锁+对象）
 
-##### synchronized内置锁  
+#### synchronized内置锁  
 
 1. 原生语法层面的互斥锁。
 2. synchronized关键词编译后，在同步块前后分别形成`monitorenter`和`monitorexit`两个字节码指令，需要一个reference类型的参数指明要**锁定和解锁的对象**。
@@ -304,7 +257,7 @@ JDK并发包：
 3. 非公平锁：允许插队。
 3. 重量级锁。
 
-##### ReentrantLock可重入锁，显式锁  
+#### ReentrantLock可重入锁，显式锁  
 
 可重入：允许一个线程连续两次获得同一把锁。而不会死锁。
 
@@ -331,17 +284,19 @@ unlock();//释放锁；
 - 等待队列：没有请求到锁的线程进入等待队列；
 - 阻塞原语：park()和unpark()来挂起和恢复线程。例如线程阻塞工具类：LockSupport。
 
-##### Condition加锁条件  
+#### Condition加锁条件  
 
 - Condition+ReentrantLock=wait(),notify()+synchronized。
 - 利用Condition对象，让线程在合适的时间等待，或者在某一特定时间得到通知。
 - 可重入锁ReentrantLock的好搭档，与ReentrantLock相绑定。
-    2. `Condition#await()`:与`Object.wait()`相似，使当前线程等待，同时释放当前锁。
-    3.  `Condition#awaitUninterruptibly()`：与`Object.wait()`相似，但是不会再等待过程中响应中断。
-    4.  `Condition#singal()`：与`Object.notify()`相似，唤醒一个在等待中的线程。
-    5.  `Condition#singalAll()`：唤醒所有等待的线程。
+```java
+Condition#await();//与Object.wait()相似，使当前线程等待，同时释放当前锁。
+Condition#awaitUninterruptibly();//与Object.wait()相似，但是不会再等待过程中响应中断。
+Condition#singal();//与Object.notify()相似，唤醒一个在等待中的线程。
+Condition#singalAll();//唤醒所有等待的线程。
+```
 
-##### Semaphore信号量  
+#### Semaphore信号量  
 
 1. 广义上说，信号量是对锁的扩展，可以指定**多个线程同时访问某一个资源**。
 ```java
@@ -351,7 +306,7 @@ public boolean tryAcquire();//：尝试获得一个许可，如果成功返回tr
 public boolean tryAcquire(long timeout, TimeUnit unit);
 public void release();//用于在线程访问资源结束后，释放一个许可，以使其他等待许可的线程可以进行资源访问。
 ```
-##### ReadWriteLock读写分离锁  
+#### ReadWriteLock读写分离锁  
 
 1. 读写锁：一个资源可以被多个读操作访问，或者被一个写操作访问，但两者不能同时进行。
 2. 读读不互斥，读写互斥，写写互斥。
@@ -362,7 +317,7 @@ public void release();//用于在线程访问资源结束后，释放一个许�
     6. 降级
     7. 升级
 
-##### CountDownLatch倒计时器（闭锁）  
+#### CountDownLatch倒计时器（闭锁）  
 
 1. 用来控制线程等待，让某一个线程等待知道倒计时结束，再开始执行。
 
@@ -372,10 +327,10 @@ CountDownLatch#countdown();
 CountDownLatch#wait();
 ```
 
-##### FutureTask（闭锁）  
+#### FutureTask（闭锁）  
 
 
-##### CyclicBarrier循环栅栏  
+#### CyclicBarrier循环栅栏  
 
 1. 与CountDownLatch类似，可以实现线程间的计数等待。
 2. Latch：阻止线程继续执行，要求线程在栅栏处等待。
@@ -385,17 +340,17 @@ CountDownLatch#wait();
 public CyclicBarrier(int parties,Runnable barrierAction);//barrierAction就是当计数器一次计数完成后，系统会执行的动作。
 ```
 
-##### Exchanger栅栏  
+#### Exchanger栅栏  
 
 
-##### LockSupport阻塞工具  
+#### LockSupport阻塞工具  
 
 1. 线程阻塞工具，使用了类似信号量的机制。可以在线程内任意位置让线程阻塞。
 2. 与Thread.suspend()相比，弥补了由于resume()在前发生，导致线程无法继续执行的情况。
 3. 与Object#wait()相比，不需要先获得某个对象的锁，也不会抛出InterruptedException。
 4. LockSuppor.park()：阻塞当前线程，类似还有parkNanos()、parkUtil()等。
 
-#### 7.2 线程池：
+### 线程池：
 
 - Executor：线程池工厂； 
 - TheadPoolExecutor：线程池
@@ -447,7 +402,7 @@ workQueue.offer();//进入等待队列；
 
 fork()多一个执行分支；join()表示等待；
 
-#### 7.3 JDK并发容器：
+### JDK并发容器
 
 并发容器：取代线程不安全的容器
 
@@ -505,7 +460,7 @@ CAS(V,E,N)的三个参数：V要更新的值；E预期只；N新值。
 - Vector：无锁的Vector实现
 - SynchronousQueue：让线程见互相帮助
 
-### 相关名词
+#### 相关名词
 
 - 自旋锁：自旋，jvm默认是10次吧，有jvm自己控制。for去争取锁
 - 阻塞锁：被阻塞的线程，不会争夺锁。
@@ -525,7 +480,5 @@ CAS(V,E,N)的三个参数：V要更新的值；E预期只；N新值。
 - 锁膨胀：jvm实现，锁粗化
 - 信号量：使用阻塞锁 实现的一种策略
 - 排它锁：X锁，若事务T对数据对象A加上X锁，则只允许T读取和修改A，其他任何事务都不能再对A加任何类型的锁，直到T释放A上的锁。这就保证了其他事务在T释放A上的锁之前不能再读取和修改A。
-
-## 四、《实现Java高并发程序设计》
 
 

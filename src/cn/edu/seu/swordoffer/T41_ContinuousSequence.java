@@ -2,11 +2,11 @@ package cn.edu.seu.swordoffer;
 
 import java.util.*;
 
-/**
+/**求和为sum的连续序列
  * @Author personajian
  * @Date 2017/7/25 14:27
  */
-public class ContinuousSequence {
+public class T41_ContinuousSequence {
     public static ArrayList<ArrayList<Integer> > FindContinuousSequence(int sum) {
         ArrayList<ArrayList<Integer>> lists=new ArrayList<ArrayList<Integer>>();
         Map<Integer,Integer> map=new TreeMap<Integer,Integer>() ;

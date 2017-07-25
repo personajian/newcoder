@@ -2,6 +2,10 @@ package cn.edu.seu.swordoffer;
 
 import java.time.Period;
 
+/**重建二叉树
+ * @Author personajian
+ * @Date 2017/7/25 22:58
+ */
 public class T6_ConstructBTree {
 
 	private class BTreeNode{
