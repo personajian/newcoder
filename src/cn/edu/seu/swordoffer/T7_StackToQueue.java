@@ -2,7 +2,7 @@ package cn.edu.seu.swordoffer;
 
 import java.util.Stack;
 
-public class StackToQueue {
+public class T7_StackToQueue {
     Stack<Integer> stack1 = new Stack<Integer>();
     Stack<Integer> stack2 = new Stack<Integer>();
 
@@ -21,7 +21,7 @@ public class StackToQueue {
     }
 
     public static void main(String[] args) {
-        StackToQueue stq=new StackToQueue();
+        T7_StackToQueue stq=new T7_StackToQueue();
         stq.push(1);
         stq.push(2);
         stq.push(3);
