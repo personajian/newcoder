@@ -1,5 +1,6 @@
 package cn.edu.seu.swordoffer;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class T5_PrintListReserve {
@@ -21,13 +22,17 @@ public class T5_PrintListReserve {
 			System.out.println(p.value);
 		}
 	}
-		
+	/*从尾到头打印链表：递归方式
+	*
+	* */
 	public void PrintListReserveRecursively(ListNode head) {
 		if(head!=null) {
 			if(head.next!=null) PrintListReserveRecursively(head.next);
 		}
 		System.out.println(head.value);
 	}
+
+
 	
 	private static class ListNode{
 		int value;
