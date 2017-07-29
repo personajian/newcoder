@@ -15,6 +15,7 @@ public class T6_ConstructBTree {
 		
 		public BTreeNode() {
 			this.value=0;
+			
 			this.left=null;
 			this.right=null;
 		}
