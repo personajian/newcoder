@@ -2,6 +2,11 @@ package cn.edu.seu.practice.thread;
 
 import java.util.Date;
 
+
+/**模拟死锁
+ * @Author personajian
+ * @Date 2017/7/31 22:26
+ */
 public class DeadLock {
     public static String obj1 = "obj1";
     public static String obj2 = "obj2";
@@ -12,6 +17,7 @@ public class DeadLock {
         new Thread(lb).start();
     }
 }
+
 class LockA implements Runnable{
     public void run() {
         try {
@@ -31,6 +37,7 @@ class LockA implements Runnable{
         }
     }
 }
+
 class LockB implements Runnable{
     public void run() {
         try {

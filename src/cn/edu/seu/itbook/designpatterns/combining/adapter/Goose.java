@@ -1,0 +1,7 @@
+package cn.edu.seu.itbook.designpatterns.combining.adapter;
+
+public class Goose {
+	public void honk() {
+		System.out.println("Honk");
+	}
+}
