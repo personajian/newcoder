@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-public class UnDeadLock {
+public class DeadLockUn {
     public static String obj1 = "obj1";
     public static final Semaphore a1 = new Semaphore(1);
     public static String obj2 = "obj2";
@@ -22,9 +22,9 @@ class LockAa implements Runnable {
         try {
             System.out.println(new Date().toString() + " LockA 开始执行");
             while (true) {
-                if (UnDeadLock.a1.tryAcquire(1, TimeUnit.SECONDS)) {
+                if (DeadLockUn.a1.tryAcquire(1, TimeUnit.SECONDS)) {
                     System.out.println(new Date().toString() + " LockA 锁住 obj1");
-                    if (UnDeadLock.a2.tryAcquire(1, TimeUnit.SECONDS)) {
+                    if (DeadLockUn.a2.tryAcquire(1, TimeUnit.SECONDS)) {
                         System.out.println(new Date().toString() + " LockA 锁住 obj2");
                         Thread.sleep(60 * 1000); // do something
                     }else{
@@ -33,8 +33,8 @@ class LockAa implements Runnable {
                 }else{
                     System.out.println(new Date().toString() + "LockA 锁 obj1 失败");
                 }
-                UnDeadLock.a1.release(); // 释放
-                UnDeadLock.a2.release();
+                DeadLockUn.a1.release(); // 释放
+                DeadLockUn.a2.release();
                 Thread.sleep(1000); // 马上进行尝试，现实情况下do something是不确定的
             }
         } catch (Exception e) {
@@ -47,9 +47,9 @@ class LockBb implements Runnable {
         try {
             System.out.println(new Date().toString() + " LockB 开始执行");
             while (true) {
-                if (UnDeadLock.a2.tryAcquire(1, TimeUnit.SECONDS)) {
+                if (DeadLockUn.a2.tryAcquire(1, TimeUnit.SECONDS)) {
                     System.out.println(new Date().toString() + " LockB 锁住 obj2");
-                    if (UnDeadLock.a1.tryAcquire(1, TimeUnit.SECONDS)) {
+                    if (DeadLockUn.a1.tryAcquire(1, TimeUnit.SECONDS)) {
                         System.out.println(new Date().toString() + " LockB 锁住 obj1");
                         Thread.sleep(60 * 1000); // do something
                     }else{
@@ -58,8 +58,8 @@ class LockBb implements Runnable {
                 }else{
                     System.out.println(new Date().toString() + "LockB 锁 obj2 失败");
                 }
-                UnDeadLock.a1.release(); // 释放
-                UnDeadLock.a2.release();
+                DeadLockUn.a1.release(); // 释放
+                DeadLockUn.a2.release();
                 Thread.sleep(10 * 1000); // 这里只是为了演示，所以tryAcquire只用1秒，而且B要给A让出能执行的时间，否则两个永远是死锁
             }
         } catch (Exception e) {
