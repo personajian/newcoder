@@ -6,7 +6,7 @@ import java.util.*;
  * @author personajian
  *
  */
-public class S2_ {
+public class S2_MatrixMultiply {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		while (in.hasNext()) {

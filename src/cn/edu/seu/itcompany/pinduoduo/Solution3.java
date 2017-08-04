@@ -3,6 +3,10 @@ package cn.edu.seu.itcompany.pinduoduo;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**六一儿童节
+ * @Author personajian
+ * @Date 2017/8/2 21:36
+ */
 public class Solution3 {
 
 	public static void main(String[] args) {

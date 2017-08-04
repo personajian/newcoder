@@ -4,7 +4,7 @@ package cn.edu.seu.itcompany.envision;
  * @author personajian
  *
  */
-public class S1 {
+public class S1_PrintZigzagMatrix {
 	public int[] printMatrix(int[][] mat, int n, int m) {
 		int count = 0;
 		int[] zigzag = new int[n * m];

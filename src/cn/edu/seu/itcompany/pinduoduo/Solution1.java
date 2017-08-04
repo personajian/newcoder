@@ -3,6 +3,10 @@ package cn.edu.seu.itcompany.pinduoduo;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**求无序数组三个数的最大乘积
+ * @Author personajian
+ * @Date 2017/8/2 21:35
+ */
 public class Solution1 {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
