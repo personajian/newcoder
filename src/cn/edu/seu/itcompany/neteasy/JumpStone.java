@@ -21,32 +21,46 @@ public class JumpStone {
         while (in.hasNext()) {
             int m=in.nextInt();
             int n=in.nextInt();
-            int result=numJumpStone(m,n);
+            System.out.println(dp(m,n));
         }
         in.close();
     }
 
-    private static int numJumpStone(int m, int n){
-        int differ=n-m;
-        int step=0;
-        for(;;){
-            List<Integer> list=divisor(m);
-            List<Integer> list1=new ArrayList<>(list.size());
-            for(int div:list){
-                list1.add(step+=div);
-            }
-            if(list1.contains(differ));
+    private static int dp(int n, int m){
+        if(m==n) return 0;
+
+        int steps=m-n+1;
+        int[] dp=new int[steps];//规划的量：到达每个位置需要的最小步数。
+        dp[0]=0;//起点
+        for(int i=1;i<steps;i++){
+            dp[i]=Integer.MAX_VALUE;
         }
+
+        for(int i=0;i<steps;i++){
+            if(dp[i]==Integer.MAX_VALUE){
+                dp[i]=0;
+                continue;
+            }
+
+            List<Integer> divosr=divisor(i+n);
+            for(int div:divosr){
+                if(i+n+div<=m)
+                    dp[i+div]=Math.min(dp[i+div],dp[i]+1);
+            }
+        }
+
+        if (dp[steps - 1] == 0) return -1;
+        else return dp[steps-1];
 
     }
 
 
     private static List<Integer> divisor(int num){
         List<Integer> list=new ArrayList<>();
-        for (int i = 2; i < (int)Math.sqrt(num); i++) {
+        for (int i = 2; i <= (int)Math.sqrt(num); i++) {
             if(num%i==0){
                 list.add(i);
-                list.add(num/i);
+                if(num/i!=i) list.add(num/i);
             }
         }
         return list;

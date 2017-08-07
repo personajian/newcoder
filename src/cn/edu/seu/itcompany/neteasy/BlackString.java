@@ -7,7 +7,13 @@ import java.util.Scanner;
  BAACAACCBAAA 连续子串"CBA"中包含了'A','B','C'各一个，所以是纯净的字符串
  AABBCCAABB 不存在一个长度为3的连续子串包含'A','B','C',所以是暗黑的字符串
  你的任务就是计算出长度为n的字符串(只包含'A'、'B'和'C')，有多少个是暗黑的字符串。
- * @Author personajian
+
+ *解析：长度n的黑暗字符串个数是由上一个阶段的某些状态得到的：Same表示后两位字母相同，Differ表示后两位字母不同。
+ * dp(n)=3*Same(n-1)+2*Differ(n-1)
+ * dp(n)=2*(Same(n-1)+Differ(n-2))+Same(n-1)
+ * dp(n)=2*dp(n-1)+Same(n-1)
+ * dp(n)=2*dp(n-1)+dp(n-2)
+ *  @Author personajian
  * @Date 2017/8/4 22:29
  */
 public class BlackString {
@@ -15,23 +21,17 @@ public class BlackString {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         while (in.hasNext()) {
-            int n=in.nextInt();
-            int count=0;
-            for(int i=0;i<n;i++){
-                String str=in.next();
-                if(isBlackString(str)) count++;
-            }
+            long n=in.nextLong();
+            long count=dp(n);
             System.out.println(count);
         }
         in.close();
     }
 
-    public static boolean isBlackString(String str){
-        //int step=0;
-        for(int i=0;i<str.length()-2;i++){
-            String sub=str.substring(i,i+3);
-            if(sub.contains("A")&&sub.contains("B")&&sub.contains("C")) return false;
-        }
-        return true;
+    public static long dp(long n){
+
+        if(n==1) return 3;
+        if(n==2) return 9;
+        return 2*dp(n-1)+dp(n-2);
     }
 }

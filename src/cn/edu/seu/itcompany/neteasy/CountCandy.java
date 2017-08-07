@@ -26,8 +26,10 @@ public class CountCandy {
                 C=(s4-s2)/2;
                 B=s2+C;
                 A=s3-B;
-                if((A-B==s1)&&A>=0&&B>=0&&C>=0) System.out.println(A+" "+B+" "+C);
-                else System.out.println("No");
+                if((A-B==s1)&&A>=0&&B>=0&&C>=0)
+                    System.out.println(A+" "+B+" "+C);
+                else
+                    System.out.println("No");
             }
 
         }
