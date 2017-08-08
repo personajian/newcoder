@@ -17,8 +17,29 @@ public class Solution1 {
 		}
     	return index;
     }
-    
-    public static void main(String[] args) {
+
+	public int[] twoSum1(int[] nums, int target) {
+		int[] index = new int[2];
+		//Arrays.sort(nums);
+		int begin = 0;
+		int end = nums.length - 1;
+		while (begin < end) {
+			int sum = nums[begin] + nums[end];
+			if (sum == target) {
+				index[0] = begin;
+				index[1] = end;
+				break;
+			} else {
+				if (sum < target)
+					begin++;
+				else
+					end--;
+			}
+		}
+		return index;
+	}
+
+	public static void main(String[] args) {
     	Solution1 solution=new Solution1();
 		int[] nums={3,4,2};
 		int target=6;

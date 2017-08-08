@@ -29,17 +29,24 @@ public class T16_ReverseList {
     }
 
     public static ListNode ReverseList(ListNode head) {
-        if(head==null) return null;//空结点时，直接返回null
-        else if(head.next==null) return head;//只有一个结点时，直接返回单个结点
-        else{//链表结点超过1个时，方法通用
-            ListNode p=head.next;
-            ListNode pre=head;
-            head.next=null;//首结点的指针域需要特殊处理，置空。
-            while(p!=null){//p是当前结点，pre是p的前驱，q是pre的后继。小心操作，以防断链
-                ListNode q=p.next;//一定要保存后继结点
-                p.next=pre;//修改指针
-                pre=p;//更新前驱结点
-                p=q;//继续...
+        //空结点时，直接返回null
+        if (head == null)
+            return null;
+        //只有一个结点时，直接返回单个结点
+        else if (head.next == null)
+            return head;
+        //链表结点超过1个时，方法通用
+        else {
+            ListNode p = head.next;
+            ListNode pre = head;
+            //首结点的指针域需要特殊处理，置空。
+            head.next = null;
+            //p是当前结点，pre是p的前驱，q是pre的后继。小心操作，以防断链
+            while (p != null) {
+                ListNode q = p.next;//一定要保存后继结点
+                p.next = pre;//修改指针
+                pre = p;//更新前驱结点
+                p = q;//继续...
             }
             return pre;//结束标记是p为null，于是返回p的前驱pre作为链表。
         }
