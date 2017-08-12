@@ -38,6 +38,10 @@ public class MagicBracelet {
             }
         }
 
+        /**
+         * 矩阵快速幂的核心部分
+         * 二分搜索 与之本质 类似
+         */
         for (; k > 0; k >>= 1) {
             if ((k & 1) == 1) {
                 arr = Core(arr, mul);
