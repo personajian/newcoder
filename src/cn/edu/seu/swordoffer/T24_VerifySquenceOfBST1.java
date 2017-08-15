@@ -22,11 +22,11 @@ public class T24_VerifySquenceOfBST1 {
             return false;
         if (sequence.length == 1)
             return true;
-        return ju(sequence, 0, sequence.length - 1);
+        return isBST(sequence, 0, sequence.length - 1);
 
     }
 
-    public static boolean ju(int[] a, int star, int root) {
+    public static boolean isBST(int[] a, int star, int root) {
         if (star >= root)
             return true;
         int i = root;
@@ -37,7 +37,6 @@ public class T24_VerifySquenceOfBST1 {
         for (int j = star; j < i - 1; j++)
             if (a[j] > a[root])
                 return false;
-        ;
-        return ju(a, star, i - 1) && ju(a, i, root - 1);
+        return isBST(a, star, i - 1) && isBST(a, i, root - 1);
     }
 }
