@@ -2,6 +2,10 @@ package cn.edu.seu.itbook.playwithds.graph;
 
 import java.util.LinkedList;
 
+/**邻接矩阵的DFS和BFS实现，其他算法的实现都是基于此的扩展——例如访问节点时有其他操作，以及记录路径什么的。
+ * @Author personajian
+ * @Date 2017/8/16 9:26
+ */
 public class GraphAdjMatrix {
 
 	int[] vertexs;//顶点表-一维数组
@@ -17,7 +21,7 @@ public class GraphAdjMatrix {
 		for (int i = 0; i < numVertexs; i++) {
 			visited[i]=false;
 		}
-		
+		//对所有的连通图调用DFS
 		for (int i = 0; i < numVertexs; i++) {
 			if(!visited[i]) {
 				DFS(i,visited);
@@ -31,18 +35,27 @@ public class GraphAdjMatrix {
 	 */
 	private void DFS(int i, boolean[] visited) {
 		visited[i]=true;
+		//对节点的操作，简化为打印，可以定制为其他操作
 		System.out.println(vertexs[i]);
 		for (int j = 0; j < numVertexs; j++) {
-			if(edges[i][j]==1&&!visited[j]) DFS(j, visited);//对未访问的邻接顶点递归调用
+			if(edges[i][j]==1&&!visited[j]) //对未访问的邻接顶点递归调用
+				DFS(j, visited);
 		}
 	}
-	
+
+	/**邻接矩阵的广度优先遍历算法，类似于树的层次遍历（利用辅助队列实现）
+	 * @Param
+	 * @Return
+	 */
 	public void BFSTraverse() {
 		boolean[] visited=new boolean[numVertexs];
 		LinkedList<Integer> queue=new LinkedList<>();
 		for (int i = 0; i < numVertexs; i++) 
-			visited[i]=true;
+			visited[i]=false;
+
+		//对所有的连通图依次调用BFS
 		for(int i=0;i<numVertexs;i++) {
+			//此处以下，类似于树的层次遍历
 			if(!visited[i]) {
 				visited[i]=true;
 				System.out.println(vertexs[i]);

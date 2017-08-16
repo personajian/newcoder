@@ -1,30 +1,20 @@
 package cn.edu.seu.swordoffer;
 
-import java.time.Period;
-
 /**重建二叉树
  * @Author personajian
  * @Date 2017/7/25 22:58
  */
+
+
 public class T6_ConstructBTree {
 
-	private class BTreeNode{
-		int value;
-		BTreeNode left;
-		BTreeNode right;
-		
-		public BTreeNode() {
-			this.value=0;
-			
-			this.left=null;
-			this.right=null;
-		}
-		
-		public BTreeNode(int value, BTreeNode left, BTreeNode right) {
-			super();
-			this.value = value;
-			this.left = left;
-			this.right = right;
+	private class TreeNode{
+		int val;
+		TreeNode left;
+		TreeNode right;
+
+		TreeNode(int x) {
+			val = x;
 		}
 	}
 	
@@ -35,13 +25,19 @@ public class T6_ConstructBTree {
 	 * @return
 	 * @throws Exception 
 	 */
-	public BTreeNode Construct(int[] preOder,int[] inOrder) {
-		if(preOder==null||inOrder==null||preOder.length!=inOrder.length) return null;
+	public TreeNode reConstructBinaryTree(int[] pre,int[] in) {
+		if(pre==null||in==null||pre.length!=in.length) return null;
 
-		return ConstructCore(preOder,0,preOder.length-1,inOrder, 0, inOrder.length-1);
+		return ConstructCore(pre,0,pre.length-1,in, 0, in.length-1);
 	}
 
-	private BTreeNode ConstructCore(int[] preOrder,int startPre,int endPre,int[] inOrder,int startIn,int endIn) {
+
+	/**核心递归函数
+	 * @Param preOrder, startPre, endPre 需要递归的中序序列
+     * @Param inOrder, startIn, endIn 需要递归的后序序列
+	 * @Return
+	 */
+	private TreeNode ConstructCore(int[] preOrder,int startPre,int endPre,int[] inOrder,int startIn,int endIn) {
 		
 		if ((endPre - startPre) != (endIn - startIn))
 			return null;
@@ -50,10 +46,10 @@ public class T6_ConstructBTree {
 		
 		//前序遍历序列的第一个数字是根节点
 		int rootValue=preOrder[startPre];
-		BTreeNode root=new BTreeNode();
-		root.value=rootValue;
+		TreeNode root=new TreeNode(0);
+		root.val=rootValue;
 
-		//只有一个元素时，返回该节点
+		//（递归基）只有一个元素时，返回该节点
 		if(startPre==endPre&&startIn==endIn) return root;
 		
 		int rootIndex=-1,count=0;
@@ -88,9 +84,9 @@ public class T6_ConstructBTree {
 
 		int[] preOrder2 = new int[] { 1, 2, 4, 7, 3, 5, 6, 8 };
 		int[] inOrder2 = new int[] { 8, 6, 5, 3, 7, 4, 2, 1 };
-		BTreeNode root = binTree.Construct(preOrder1, inOrder1);
+		TreeNode root = binTree.reConstructBinaryTree(preOrder1, inOrder1);
 		System.out.println("普通二叉树 ，结果：" + root);
-		root = binTree.Construct(preOrder2, inOrder2);
+		root = binTree.reConstructBinaryTree(preOrder2, inOrder2);
 		System.out.println("只有左节点的二叉树 ，结果：" + root);
 	    }  
 }

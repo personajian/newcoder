@@ -27,16 +27,18 @@ public class T24_VerifySquenceOfBST1 {
     }
 
     public static boolean isBST(int[] a, int star, int root) {
+        //递归基
         if (star >= root)
             return true;
         int i = root;
         //从后面开始找
         while (i > star && a[i - 1] > a[root])
             i--;//找到比根小的坐标
-        //从前面开始找 star到i-1应该比根小
+        //从前面开始找star到i-1应该比根小
         for (int j = star; j < i - 1; j++)
             if (a[j] > a[root])
                 return false;
+        //递归左右子树
         return isBST(a, star, i - 1) && isBST(a, i, root - 1);
     }
 }

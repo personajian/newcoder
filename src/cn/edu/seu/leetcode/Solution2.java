@@ -1,13 +1,17 @@
 package cn.edu.seu.leetcode;
 
-//Definition for singly-linked list.
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int x) { val = x; }
-}
+
 
 public class Solution2 {
+
+	//Definition for singly-linked list.
+	private static class ListNode {
+		int val;
+		ListNode next;
+		ListNode(int x) { val = x; }
+	}
+
+
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
     	int length1=getLength(l1);
     	int length2=getLength(l2);
