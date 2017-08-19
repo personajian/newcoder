@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class FindPath {
+public class T25_FindPath {
 
     public static void main(String[] args) {
         TreeNode n0=new TreeNode(10);
@@ -55,6 +55,7 @@ public class FindPath {
 
         boolean isLeaf=root.left==null&&root.right==null;
 
+        //左右子树为空时，判断路径之和
         if(sum==target&&isLeaf){
             ArrayList<Integer> path=new ArrayList<Integer>();
             Iterator<TreeNode> it=stack.descendingIterator();

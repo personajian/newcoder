@@ -2,6 +2,16 @@ package cn.edu.seu.itcompany.pinduoduo;
 
 import java.util.ArrayList;
 
+/**  Input:[[4,10,15,24,26], [0,9,12,20], [5,18,22,30]]
+     Output: [20,24]
+     Explanation:
+     List 1: [4, 10, 15, 24,26], 24 is in range [20,24].
+     List 2: [0, 9, 12, 20], 20 is in range [20,24].
+     List 3: [5, 18, 22, 30], 22 is in range [20,24].
+ * @Author personajian
+ * @Date 2017/8/18 19:28
+ */
+
 public class Snippet4 {
 	
 	public static void main(String[] args) {

@@ -25,7 +25,7 @@
                    |--（经常出现的异常，可以捕获也可以不捕获。例如被零除，下标越界，要是都要捕获的话累死了。）
               |--（必须try-catch捕获或者继续抛出。例如，io异常。不然编译就不通过）
 
-![Image-java-exception.png](https://github.com/personajian/newcoder/raw/master/resources/picture/Image-java-exception.png)
+![Image-java-exception.png](https://github.com/personajian/newcoder/raw/master/note/picture/Image-java-exception.png)
 
 ## 异常-毕向东
 

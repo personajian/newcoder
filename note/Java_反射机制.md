@@ -75,4 +75,4 @@ java.lang.Class类十分特殊，用来表示**java中类型（class/interface/e
 >`java.lang.Class#getConstructor()`:获取所有的public的构造函数；
 >`java.lang.Class#getDeclaredConstructor()`:获取所有的自己声明的构造函数；
 
-![Java反射机制思维导图](https://github.com/personajian/newcoder/raw/master/resources/picture/Image-java-reflect.png)
+![Java反射机制思维导图](https://github.com/personajian/newcoder/raw/master/note/picture/Image-java-reflect.png)

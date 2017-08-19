@@ -3,14 +3,15 @@ package cn.edu.seu.swordoffer;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-/**按层打印二叉树，每一层输出一行：左程云解法，增加两个辅助树节点。
+/**按层打印二叉树，每一层输出一行：
+ * 解法，增加两个辅助数start和end。
  * @Author personajian
  * @Date 2017/8/15 21:57
  */
 public class T23_PrintTree1 {
 
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         TreeNode t1=new TreeNode(8);
         TreeNode t2=new TreeNode(6);
         TreeNode t3=new TreeNode(10);
@@ -33,7 +34,7 @@ public class T23_PrintTree1 {
                 System.out.print(i+" ");
             System.out.println();
         }
-    }
+    }*/
 
     private static ArrayList<ArrayList<Integer> > Print(TreeNode pRoot) {
 

@@ -3,11 +3,11 @@
 
 ### 1. JVM启动流程
 
-![JVM启动流程](https://github.com/personajian/newcoder/raw/master/resources/picture/Image-jvm-start-flow.png)
+![JVM启动流程](https://github.com/personajian/newcoder/raw/master/note/picture/Image-jvm-start-flow.png)
 
 ### 2. JVM基本结构
 
-![JVM基本结构](https://github.com/personajian/newcoder/raw/master/resources/picture/Image-jvm-base-structure.png)
+![JVM基本结构](https://github.com/personajian/newcoder/raw/master/note/picture/Image-jvm-base-structure.png)
 
 #### PC寄存器
 
@@ -51,7 +51,7 @@
 
 栈、堆、方法区交互
 
-![运行时数据区](https://github.com/personajian/newcoder/raw/master/resources/picture/Image-jvm-runtime-data-area.png)
+![运行时数据区](https://github.com/personajian/newcoder/raw/master/note/picture/Image-jvm-runtime-data-area.png)
 
 
 ### 3. 内存模型
@@ -59,8 +59,8 @@
 - 每一个线程有一个工作内存和主存独立
 - 工作内存存放主存中变量的值的拷贝
 
-![内存模型](https://github.com/personajian/newcoder/raw/master/resources/picture/Image-jvm-memory-model.png)
-![内存模型2](https://github.com/personajian/newcoder/raw/master/resources/picture/Image-jvm-memory-model-2.png)
+![内存模型](https://github.com/personajian/newcoder/raw/master/note/picture/Image-jvm-memory-model.png)
+![内存模型2](https://github.com/personajian/newcoder/raw/master/note/picture/Image-jvm-memory-model-2.png)
 
 
 ### 4. 关于线程

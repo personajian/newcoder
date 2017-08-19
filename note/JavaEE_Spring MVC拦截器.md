@@ -59,7 +59,7 @@ public abstract interface org.springframework.web.servlet.HandlerInterceptor {
 
 #### 多个拦截器应用
 
-![Image-javaee-springmvc-interceptor-multiinterceptor.png](https://github.com/personajian/newcoder/raw/master/resources/picture/Image-javaee-springmvc-interceptor-multiinterceptor.png)
+![Image-javaee-springmvc-interceptor-multiinterceptor.png](https://github.com/personajian/newcoder/raw/master/note/picture/Image-javaee-springmvc-interceptor-multiinterceptor.png)
 
 #### 拦截器的其他实现方式
 
@@ -81,11 +81,11 @@ public abstract interface org.springframework.web.context.request.WebRequestInte
 
 1. 乱码问题
  
-![Image-javaee-springmvc-interceptor-encoding.png](https://github.com/personajian/newcoder/raw/master/resources/picture/Image-javaee-springmvc-interceptor-encoding.png)
+![Image-javaee-springmvc-interceptor-encoding.png](https://github.com/personajian/newcoder/raw/master/note/picture/Image-javaee-springmvc-interceptor-encoding.png)
 
 2. 解决权限验证问题
 
-![Image-javaee-springmvc-interceptor-role.png](https://github.com/personajian/newcoder/raw/master/resources/picture/Image-javaee-springmvc-interceptor-role.png)
+![Image-javaee-springmvc-interceptor-role.png](https://github.com/personajian/newcoder/raw/master/note/picture/Image-javaee-springmvc-interceptor-role.png)
 
 
 ### 4. 拦截器与过滤器的对比

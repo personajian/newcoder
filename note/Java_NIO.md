@@ -20,8 +20,8 @@
 11. [Java NIO编程实例之三Selector - 知乎专栏](https://zhuanlan.zhihu.com/p/26243285)
 12. [多种I/O模型及其对socket效率的改进](http://mickhan.blog.51cto.com/2517040/1586370)
 13. [谁能用通俗的语言解释一下什么是 RPC 框架？-知乎](https://www.zhihu.com/question/25536695/answer/36197244)
-13. []()
-13. []()
+13. [浅谈 Linux 中 Selector 的实现原理](http://www.jianshu.com/p/2b71ea919d49)
+13. [linux下epoll如何实现高效处理百万句柄的](http://blog.csdn.net/russell_tao/article/details/7160071)
 13. []()
 13. []()
 13. []()
@@ -184,4 +184,91 @@ NIO客户端应用：
 7. IO多路复用大大提高了Java网络应用的可伸缩性和实用性
 
 
+### 1. [深入浅出NIO Channel和Buffer-占小狼](http://www.jianshu.com/p/052035037297)
 
+Java NIO 由以下几个核心部分组成：
+
+1. Buffer
+2. Channel
+3. Selector
+
+#### Buffer
+
+一块缓存区，内部使用字节数组存储数据，并维护几个特殊变量，实现数据的反复利用。
+
+几个特殊的变量有：mark, position, limit, capacity
+
+方法有：mark(), reset(), clear(), flip(), rewind()
+
+目前Buffer的实现类有以下几种：
+
+- ByteBuffer
+- CharBuffer
+- DoubleBuffer
+- FloatBuffer
+- IntBuffer
+- LongBuffer
+- ShortBuffer
+- MappedByteBuffer
+
+#### ByteBuffer
+
+- HeapByteBuffer：通过初始化字节数组hd，在虚拟机堆上申请内存空间。
+- DirectByteBuffer：DirectByteBuffer通过unsafe.allocateMemory在物理内存中申请地址空间（非jvm堆内存），并在ByteBuffer的address变量中维护指向该内存的地址。unsafe.setMemory(base, size, (byte) 0)方法把新申请的内存数据清零。 
+
+#### Channel
+
+又称“通道”，NIO把它支持的I/O对象抽象为Channel，类似于原I/O中的流（Stream），但有所区别：
+
+- 流是单向的，通道是双向的，可读可写。
+- 流读写是阻塞的，通道可以异步读写。
+- 流中的数据可以选择性的先读到缓存中，通道的数据总是要先读到一个缓存中，或从缓存中写入。
+
+目前已知Channel的实现类有：
+
+- FileChannel
+- DatagramChannel
+- SocketChannel
+- ServerSocketChannel
+
+#### FileChannel
+
+FileChannel的read、write和map通过其实现类FileChannelImpl实现。
+
+### 2. [深入浅出NIO Socket实现机制-占小狼](http://www.jianshu.com/p/0d497fe5484a)
+
+以前基于net包进行socket编程时，accept方法会一直阻塞，直到有客户端请求的到来，并返回socket进行相应的处理。整个过程是流水线的，处理完一个请求，才能去获取并处理后面的请求；当然我们可以把获取socket和处理socket的过程分开，一个线程负责accept，线程池负责处理请求。
+
+NIO为我们提供了更好的解决方案，采用选择器（Selector）找出已经准备好读写的socket，并按顺序处理，基于通道（Channel）和缓冲区（Buffer）来传输和保存数据。
+
+为了实现Selector管理多个SocketChannel，必须将多个具体的SocketChannel对象注册到Selector对象，并声明需要监听的事件，目前有4种类型的事件：
+
+- connect：客户端连接服务端事件，对应值为SelectionKey.OP_CONNECT(8)
+- accept：服务端接收客户端连接事件，对应值为SelectionKey.OP_ACCEPT(16)
+- read：读事件，对应值为SelectionKey.OP_READ(1)
+- write：写事件，对应值为SelectionKey.OP_WRITE(4)
+
+当SocketChannel有对应的事件发生时，Selector能够觉察到并进行相应的处理。
+
+#### epoll原理
+
+epoll是Linux下的一种IO多路复用技术，可以非常高效的处理数以百万计的socket句柄。
+
+使用c封装的3个epoll系统调用：
+
+1. int epoll_create(int size)
+epoll_create建立一个epoll对象。参数size是内核保证能够正确处理的最大句柄数，多于这个最大数时内核可不保证效果。
+2. int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event)
+epoll_ctl可以操作epoll_create创建的epoll，如将socket句柄加入到epoll中让其监控，或把epoll正在监控的某个socket句柄移出epoll。
+3. int epoll_wait(int epfd, struct epoll_event *events,int maxevents, int timeout)
+epoll_wait在调用时，在给定的timeout时间内，所监控的句柄中有事件发生时，就返回用户态的进程。
+
+epoll的两种工作模式：
+
+1. LT：level-trigger，水平触发模式，只要某个socket处于readable/writable状态，无论什么时候进行epoll_wait都会返回该socket。
+2. ET：edge-trigger，边缘触发模式，只有某个socket从unreadable变为readable或从unwritable变为writable时，epoll_wait才会返回该socket。
+
+为了实现client和server的数据交互，Linux下采用管道pipe实现，windows下采用两个socket之间的通信进行实现，它们都有这样的特性：
+
+1. 都有两个端，一个是read端，一个是write端，windows中两个socket也是read和write的角色。
+2. 当往write端写入 数据，则read端即可以收到数据。
