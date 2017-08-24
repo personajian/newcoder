@@ -6,7 +6,7 @@ package cn.edu.seu.itcompany.huawei;
  */
 public class Fxthree {
 	
-	public static void shortestPathDij(MGraph G,int v0,int[] P,int[] D) {
+/*	public static void shortestPathDij(MGraph G, int v0, int[] P, int[] D) {
 		
 		int v,w,k=0,min;
 		
@@ -55,23 +55,25 @@ public class Fxthree {
 			System.out.print(i+" ");
 		}
 	}
+
+	private static class MGraph{
+		int VERTEXNUM;
+		int[] vertex;
+		int[][] edge;
+		public MGraph(int vertextnum) {
+			VERTEXNUM=vertextnum;
+			vertex=new int[vertextnum];
+			edge=new int[vertextnum][vertextnum];
+		}
+		public MGraph(int vertextnum,int[][] edge) {
+			this.VERTEXNUM=vertextnum;
+			this.vertex=new int[vertextnum];
+			this.edge=edge;
+		}
+	}*/
 	
 }
 
 
-class MGraph{
-	int VERTEXNUM;
-	int[] vertex;
-	int[][] edge;
-	public MGraph(int vertextnum) {
-		VERTEXNUM=vertextnum;
-		vertex=new int[vertextnum];
-		edge=new int[vertextnum][vertextnum];
-	}
-	public MGraph(int vertextnum,int[][] edge) {
-		this.VERTEXNUM=vertextnum;
-		this.vertex=new int[vertextnum];
-		this.edge=edge;
-	}
-}
+
 

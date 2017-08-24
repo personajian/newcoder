@@ -1,7 +1,16 @@
 #### 参考文章
 
-1. [](http://www.cnblogs.com/zhanjindong/p/java-concurrent-package-aqs-overview.html)
-2. [](https://www.kancloud.cn/seaboat/java-concurrent/117874)
+
+2. [《Java并发包源码学习之AQS框架（一）概述》](http://jindong.io/2015/03/10/java-concurrent-package-aqs-overview/)
+3. [《Java并发包源码学习之AQS框架（二）CLH lock queue和自旋锁》](http://jindong.io/2015/03/11/java-concurrent-package-aqs-clh-and-spin-lock/)
+4. [《Java并发包源码学习之AQS框架（三）LockSupport》](http://jindong.io/2015/03/14/java-concurrent-package-aqs-locksupport-and-thread-interrupt/)
+1. [Java并发包源码学习之AQS框架（四）AbstractQueuedSynchronizer源码分析](http://zhanjindong.com/2015/03/15/java-concurrent-package-aqs-AbstractQueuedSynchronizer)
+2. [Java并发框架——什么是AQS框架](https://www.kancloud.cn/seaboat/java-concurrent/117874)
+3. [再谈AbstractQueuedSynchronizer1：独占模式](http://www.cnblogs.com/xrq730/p/7056614.html)
+4. [再谈AbstractQueuedSynchronizer2：共享模式与基于Condition的等待/通知机制实现](http://www.cnblogs.com/xrq730/p/7067904.html)
+5. [再谈AbstractQueuedSynchronizer3：基于AbstractQueuedSynchronizer的并发类实现](http://www.cnblogs.com/xrq730/p/7096084.html)
+6. [深入并发包-AQS](http://pettyandydog.com/2017/06/27/AQS/index.html)
+7. [JAVA并发编程学习笔记之CLH队列锁](http://blog.csdn.net/aesop_wubo/article/details/7533186)
 
 ### 正文
 

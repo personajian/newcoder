@@ -7,6 +7,12 @@
 4. [Difference between wait() and sleep()](https://stackoverflow.com/questions/1036754/difference-between-wait-and-sleep)
 5. 《深入理解Java虚拟机》
 6. 《实战Java高并发程序设计》
+7. [浅析Java并发编程（一）基础概念&理论](http://www.jianshu.com/p/f4cdcc90290a)
+7. [浅析Java并发编程（二）synchronized & volatile](http://www.jianshu.com/p/7713f95b1a67)
+7. [浅析Java并发编程（三）线程的状态&协作](http://www.jianshu.com/p/7cc1c01f7655)
+7. [浅析Java并发编程（四）java.util.concurrent](http://www.jianshu.com/p/47ff843bcfe7)
+7. [浅析Java并发编程（五）CAS&Unsafe&AQS的“秘密”](http://www.jianshu.com/p/54cc20a87502)
+
 
 
 ### 线程生命周期

@@ -37,6 +37,7 @@ public class Dijkstra {
 					min=D[w];
 				}
 			}
+
 			finall[k]=true;//将k顶点标记为已求得最短路径
 			
 			//在v0到k的最短路径之上，对v相邻结顶点w的边进行计算，得到v0到这些相邻结点w的最短距离。

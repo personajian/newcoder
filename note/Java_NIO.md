@@ -22,7 +22,7 @@
 13. [谁能用通俗的语言解释一下什么是 RPC 框架？-知乎](https://www.zhihu.com/question/25536695/answer/36197244)
 13. [浅谈 Linux 中 Selector 的实现原理](http://www.jianshu.com/p/2b71ea919d49)
 13. [linux下epoll如何实现高效处理百万句柄的](http://blog.csdn.net/russell_tao/article/details/7160071)
-13. []()
+13. [IO复用模型同步，异步，阻塞，非阻塞及实例详解](http://www.jianshu.com/p/511b9cffbdac?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 13. []()
 13. []()
 
