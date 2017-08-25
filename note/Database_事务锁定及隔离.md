@@ -72,8 +72,8 @@ ANSI/ISO SQL 92标准定义了4个等级的事务隔离级别（由弱到强）�
 
 名称|隔离级别|锁机制|脏读|不可重复读|幻象读|第一类丢失更新|第二类丢失更新
 ---|---|---|---|---|---|---|---
-读未提交|READ UMCOMMITED|无锁|允许|允许|允许|不允许|允许
-读已提交|READ CONMITED|行共享锁|不允许|允许|允许|不允许|允许
-可重复读|REPEATABLE READ|行独占锁定|不允许|允许|不允许|不允许|不允许
-可串行化|SERIALIZABLE|表独占锁|不允许|不允许|不允许|不允许|不允许
+读未提交|READ UMCOMMITED|无锁|yes|yes|yes|no|yes
+读已提交|READ CONMITED|行共享锁|no|yes|yes|no|yes
+可重复读|REPEATABLE READ|行独占锁|no|no|yes|no|no
+可串行化|SERIALIZABLE|表独占锁|no|no|no|no|no
 
