@@ -1,4 +1,4 @@
-package cn.edu.seu.itcompany.neteasy;
+package cn.edu.seu;
 
 import java.util.Scanner;
 

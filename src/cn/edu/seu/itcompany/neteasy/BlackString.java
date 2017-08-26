@@ -10,7 +10,7 @@ import java.util.Scanner;
 
  *解析：长度n的黑暗字符串个数是由上一个阶段的某些状态得到的：Same表示后两位字母相同，Differ表示后两位字母不同。
  * dp(n)=3*Same(n-1)+2*Differ(n-1)
- * dp(n)=2*(Same(n-1)+Differ(n-2))+Same(n-1)
+ * dp(n)=2*(Same(n-1)+Differ(n-1))+Same(n-1)
  * dp(n)=2*dp(n-1)+Same(n-1)
  * dp(n)=2*dp(n-1)+dp(n-2)
  *  @Author personajian
