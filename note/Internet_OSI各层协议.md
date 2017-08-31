@@ -35,7 +35,7 @@ TCP/IP 协议族常用协议：
         - RIP(Routing Information Protocol,路由信息协议)
         - OSPF(Open Shortest Path First,开放最短路径优先)
     - EGP(External Gateway Protocal,外部网关协议)
-        -BGP(Border Gateway Protocol,边界网关协议) 
+        - BGP(Border Gateway Protocol,边界网关协议) 
     - IGMP(Internet Group Management Protocol,网际组管理协议)
 1. 数据链路层：
     - SLIP
