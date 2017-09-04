@@ -28,7 +28,7 @@ public class ThreadJoin {
              Thread-1 Work End
              */
 
-            Thread thread = new Thread(() -> {
+            Thread thread2 = new Thread(() -> {
                 try {
                     //模拟子线程需要执行500毫秒
                     Thread.sleep(500);
@@ -37,8 +37,8 @@ public class ThreadJoin {
                 }
                 System.out.println(Thread.currentThread().getName() + " Work End");
             });
-            thread.start();
-            thread.join(100);//合并到主线程，主线程将等待该子线程执行完毕才会执行，只等待100毫秒，过时不在等。
+            thread2.start();
+            thread2.join(100);//合并到主线程，主线程将等待该子线程执行完毕才会执行，只等待100毫秒，过时不在等。
 
             System.out.println("Main Thread Work End");
 
