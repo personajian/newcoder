@@ -27,7 +27,7 @@ public final class Sort
     }
 
     /**
-     * Shellsort, using Shell's (poor) increments.
+     * Shellsort, using ShellSort's (poor) increments.
      * @param a an array of Comparable items.
      */
     public static <AnyType extends Comparable<? super AnyType>>
@@ -266,7 +266,7 @@ public final class Sort
     }
 
     /**
-     * Quick selection algorithm.
+     * QuickSort selection algorithm.
      * Places the kth smallest item in a[k-1].
      * @param a an array of Comparable items.
      * @param k the desired rank (1 is minimum) in the entire array.
@@ -372,7 +372,7 @@ public final class Sort
         Sort.quickSelect( b, b.length  / 2 );
         long end = System.currentTimeMillis( );
         System.out.println( "Timing for Section 1.1 example: " );
-        System.out.println( "Selection for N = " + b.length + " takes " + 
+        System.out.println( "SelectSort for N = " + b.length + " takes " +
                              ( end - start ) + "ms." );
         System.out.println( b[ b.length / 2 - 1 ] + " " + b.length / 2 );
     }

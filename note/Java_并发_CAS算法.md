@@ -1,6 +1,9 @@
 #### 参考文章
 
 1. [java中的CAS](http://www.jianshu.com/p/fb6e91b013cc)
+2. [JAVA CAS原理深度分析](http://zl198751.iteye.com/blog/1848575)
+3. [CAS原子操作实现无锁及性能分析](http://blog.csdn.net/chen19870707/article/details/41083183)
+4. []()
 
 #### CAS
 

@@ -19,7 +19,7 @@ public class T16_ReverseList {
         l4.next=l5;
         l5.next=null;
 
-        ListNode reverse=ReverseList(l1);
+        ListNode reverse= reverseList2(l1);
         ListNode p=reverse;
         while(p!=null){
             System.out.print(p.val);
@@ -27,13 +27,18 @@ public class T16_ReverseList {
             p=p.next;
         }
     }
-
-    public static ListNode ReverseList(ListNode head) {
-        //空结点时，直接返回null
+    /**反转链表（迭代实现）
+     * @Param
+     * @Return
+     */
+    public static ListNode reverseList(ListNode head) {
+        /*//空结点时，直接返回null
         if (head == null)
             return null;
         //只有一个结点时，直接返回单个结点
         else if (head.next == null)
+            return head;*/
+        if(head==null||head.next==null)
             return head;
         //链表结点超过1个时，方法通用
         else {
@@ -51,6 +56,24 @@ public class T16_ReverseList {
             return pre;//结束标记是p为null，于是返回p的前驱pre作为链表。
         }
 
+    }
+
+    /**反转链表（递归实现）
+     * @Param
+     * @Return
+     */
+    public static ListNode reverseList2(ListNode head){
+        //递归基：递归到倒数第二个结点就可以返回了
+        if(head.next==null)
+            return head;
+        else{
+            //递归调用反转
+            ListNode p= reverseList2(head.next);
+            //核心代码：反转
+            head.next.next=head;
+            head.next=null;
+            return p;
+        }
     }
 
     private static class ListNode {

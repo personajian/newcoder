@@ -67,7 +67,7 @@ public class RedBlackTree<AnyType extends Comparable<? super AnyType>>
                  handleReorient( item );
         }
 
-            // Insertion fails if already present
+            // InsertSort fails if already present
         if( current != nullNode )
             return;
         current = new RedBlackNode<>( item, nullNode, nullNode );

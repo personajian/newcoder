@@ -93,7 +93,7 @@ public class T56_EntryNodeOfLoop {
             return 0;
     }
 
-    public static class ListNode {
+    private static class ListNode {
         int val;
         ListNode next = null;
 

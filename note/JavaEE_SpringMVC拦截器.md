@@ -1,9 +1,5 @@
-#### 参考文章
-
-1. [Spring MVC拦截器](http://www.imooc.com/learn/498)
-
-
 ### 1. 概述：Spring MVC中拦截器的使用
+
 ### 2. Spring MVC拦截器的实现
 
 #### 拦截器工作原理
@@ -59,7 +55,9 @@ public abstract interface org.springframework.web.servlet.HandlerInterceptor {
 
 #### 多个拦截器应用
 
-![Image-javaee-springmvc-interceptor-multiinterceptor.png](https://github.com/personajian/newcoder/raw/master/note/picture/Image-javaee-springmvc-interceptor-multiinterceptor.png)
+ <img src="https://github.com/personajian/newcoder/raw/master/note/picture/Image-javaee-springmvc-interceptor-multiinterceptor.png" width = "500" alt="Image-javaee-springmvc-interceptor-multiinterceptor.png-w50" align=center />
+
+<!--![Image-javaee-springmvc-interceptor-multiinterceptor.png-w50](https://github.com/personajian/newcoder/raw/master/note/picture/Image-javaee-springmvc-interceptor-multiinterceptor.png)-->
 
 #### 拦截器的其他实现方式
 
@@ -81,11 +79,15 @@ public abstract interface org.springframework.web.context.request.WebRequestInte
 
 1. 乱码问题
  
-![Image-javaee-springmvc-interceptor-encoding.png](https://github.com/personajian/newcoder/raw/master/note/picture/Image-javaee-springmvc-interceptor-encoding.png)
+ <img src="https://github.com/personajian/newcoder/raw/master/note/picture/Image-javaee-springmvc-interceptor-encoding.png" width = "500" alt="Image-javaee-springmvc-interceptor-encoding.png" align=center />
+
+<!-- ![Image-javaee-springmvc-interceptor-encoding.png](https://github.com/personajian/newcoder/raw/master/note/picture/Image-javaee-springmvc-interceptor-encoding.png) -->
 
 2. 解决权限验证问题
 
-![Image-javaee-springmvc-interceptor-role.png](https://github.com/personajian/newcoder/raw/master/note/picture/Image-javaee-springmvc-interceptor-role.png)
+ <img src="https://github.com/personajian/newcoder/raw/master/note/picture/Image-javaee-springmvc-interceptor-role.png" width = "600" alt="Image-javaee-springmvc-interceptor-role.png" align=center />
+
+<!-- ![Image-javaee-springmvc-interceptor-role.png](https://github.com/personajian/newcoder/raw/master/note/picture/Image-javaee-springmvc-interceptor-role.png) -->
 
 
 ### 4. 拦截器与过滤器的对比
