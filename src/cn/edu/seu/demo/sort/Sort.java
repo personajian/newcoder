@@ -22,7 +22,8 @@ public class Sort {
             //排序
             //quickSort(a, 0, a.length - 1);
             //bubbleSort(a,0,a.length-1);
-            insertSort(a,0,a.length-1);
+            //insertSort(a, 0, a.length - 1);
+            shellSort(a, 0, a.length - 1);
 
             //排序序列
             for (int i : a)
@@ -88,7 +89,7 @@ public class Sort {
             a[high] = a[low];
         }
 
-        a[high]=pivtol;
+        a[high] = pivtol;
         //a[low] = pivtol;
         return low;
     }
@@ -105,18 +106,46 @@ public class Sort {
         }
     }
 
-    /**插入排序
+    /**
+     * 插入排序
+     *
      * @Param
      * @Return
      */
     public static void insertSort(int[] a, int low, int high) {
 
-        for (int i = low+1; i <= high; i++) {
-            for (int j = i; j >low && a[j]<a[j-1] ; j--) {
-                swap(a,j,j-1);
+        for (int i = low + 1; i <= high; i++) {
+            //插入到合适的a[j]~a[j-1]之间
+            for (int j = i; j > low && a[j] < a[j - 1]; j--) {
+                swap(a, j, j - 1);
             }
         }
     }
+
+    /**
+     * 希尔排序
+     * 对插入排序的改良，核心还是插入排序，对h子数组进行插排
+     * @Param
+     * @Return
+     */
+    public static void shellSort(int[] a, int low, int high) {
+
+        int N = high - low + 1;
+        int h = 1;
+        while (h < N / 3)
+            h = 3 * h + 1;
+
+        while (h >= 1) {
+            for (int i = h; i < N; i++) {
+                //核心代码：插入排序的插入交换
+                for (int j = i; j >= h && a[j] < a[j - h]; j--)
+                    swap(a, j, j - h);
+            }
+            h /= 3;
+        }
+
+    }
+
 
     private static void swap(int[] a, int i, int min) {
         int temp = a[i];

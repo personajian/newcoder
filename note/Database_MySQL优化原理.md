@@ -9,8 +9,19 @@
 5. [由 B-/B+树看 MySQL索引结构](https://segmentfault.com/a/1190000004690721)
 6. [MySQL索引背后的数据结构及算法原理](http://blog.codinglabs.org/articles/theory-of-mysql-index.html)
 7. [从 MongoDB 及 Mysql 谈B/B+树](http://blog.csdn.net/wwh578867817/article/details/50493940)
-8. []()
-9. []()
+8. [mysql 中 myisam innodb 的区别有哪些？](https://www.zhihu.com/question/20596402)
+9. [MySQL存储引擎－－MyISAM与InnoDB区别](http://www.jianshu.com/p/a957b18ba40d)
+
+
+## [mysql 中 myisam innodb 的区别有哪些？](https://www.zhihu.com/question/20596402)
+
+1. InnoDB支持事务，MyISAM不支持，对于InnoDB每一条SQL语言都默认封装成事务，自动提交，这样会影响速度，所以最好把多条SQL语言放在begin和commit之间，组成一个事务；
+2. InnoDB支持外键，而MyISAM不支持。对一个包含外键的InnoDB表转为MYISAM会失败；
+3. InnoDB是聚集索引，数据文件是和索引绑在一起的，必须要有主键，通过主键索引效率很高。但是辅助索引需要两次查询，先查询到主键，然后再通过主键查询到数据。因此，主键不应该过大，因为主键太大，其他索引也都会很大。而MyISAM是非聚集索引，数据文件是分离的，索引保存的是数据文件的指针。主键索引和辅助索引是独立的。
+4. InnoDB不保存表的具体行数，执行select count(*) from table时需要全表扫描。而MyISAM用一个变量保存了整个表的行数，执行上述语句时只需要读出该变量即可，速度很快； 
+5. Innodb不支持全文索引，而MyISAM支持全文索引，查询效率上MyISAM要高。
+
+## 9. [MySQL存储引擎－－MyISAM与InnoDB区别](http://www.jianshu.com/p/a957b18ba40d)
 
 ## [我必须得告诉大家的MySQL优化原理](http://www.jianshu.com/p/d7665192aaaf)
 
