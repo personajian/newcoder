@@ -1,6 +1,9 @@
 #### 参考文章
 
 1. [【这可能不只是一篇面经】](https://www.nowcoder.com/discuss/29890)
+2. [2018网易秋招内推面经合集（不定期更新）](http://www.jianshu.com/p/7f2dc3660c70)
+3. [拿到美团offer，秋招结束了（更新面经）](https://www.nowcoder.com/discuss/36782)
+4. [2018校招-美团面试算法题汇总（就是把看到的题摘出来）](https://www.nowcoder.com/discuss/37872)
 
 
 ### 面试知识涵盖范围
@@ -327,9 +330,9 @@ Q: Spring AOP？
 4. 增强
 5. 切面：
 
-关于AOP在spring的应用（比如事务，通知，aspectJ，slf4j的原理,和log4j的对比）
+Q: 关于AOP在spring的应用（比如事务，通知，aspectJ，slf4j的原理,和log4j的对比）
 
-关于jdk代理和cglib第三方代理（说出对接口代理和子类继承的区别）
+Q: 关于jdk代理和cglib第三方代理（说出对接口代理和子类继承的区别）
 
 Q: Mybatis？
 
