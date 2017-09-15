@@ -25,7 +25,7 @@ public class BeanFactory {
 		
 		if (!beanPool.containsKey(bean)) {
 			
-			File file = new File("cn/edu/seu/itcompany/alibaba/ioc/ioc.txt");
+			File file = new File("C:\\dev\\workspace\\idea\\newcoder\\src\\cn\\edu\\seu\\itcompany\\alibaba\\ioc\\ioc.txt");
 
 			//InputStreamReader in=new InputStreamReader(new FileInputStream(file));
 			
@@ -38,7 +38,7 @@ public class BeanFactory {
 
 			Class clazz = Class.forName(beanName);
 
-			Method construct = clazz.getDeclaredMethod(beanName);
+			Method construct = clazz.getDeclaredMethod("getInstance");
 
 			beanInstance = construct.invoke(clazz);
 
