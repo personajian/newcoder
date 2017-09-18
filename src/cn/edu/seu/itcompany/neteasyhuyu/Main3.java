@@ -1,6 +1,5 @@
-package cn.edu.seu.itcompany.huyu;
+package cn.edu.seu.itcompany.neteasyhuyu;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;

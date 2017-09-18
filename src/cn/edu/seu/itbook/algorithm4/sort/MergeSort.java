@@ -17,7 +17,7 @@ public class MergeSort extends AbstractSortion {
             a[i] = original[i];
         }
         in.close();
-        sort(a,0,a.length-1);
+        sort(a, 0, a.length - 1);
         System.out.println(isSorted(a));
         show(a);
     }
